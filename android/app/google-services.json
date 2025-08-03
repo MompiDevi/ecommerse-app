@@ -1,0 +1,65 @@
+{
+  "project_info": {
+    "project_number": "470088447467",
+    "firebase_url": "https://messageapp-459c7.firebaseio.com",
+    "project_id": "messageapp-459c7",
+    "storage_bucket": "messageapp-459c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470088447467:android:ed947cdf418d70464c15ae",
+        "android_client_info": {
+          "package_name": "com.apprials.messagingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtE5aMNmZWfdPLAK5FR7ZIETytnet9rJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470088447467-bsv547hv5rr3ktr7k50esijdp98u6shl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerseApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470088447467:android:b45a11e3d057ac3a4c15ae",
+        "android_client_info": {
+          "package_name": "com.example.ecommerse_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtE5aMNmZWfdPLAK5FR7ZIETytnet9rJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470088447467-bsv547hv5rr3ktr7k50esijdp98u6shl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerseApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
