@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/google_service.dart';
 import 'package:ecommerse_app/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -168,11 +169,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16),
                         const Divider(),
                         const SizedBox(height: 16),
-                        SizedBox(
-                          width: double.infinity,
+                        ElevatedButton(
                           child: SvgPicture.asset(
-                              'assets/svg/google_logo.svg',
-                            ),
+                            'assets/svg/google_logo.svg',
+                            
+                          ),
+                          onPressed: () async {
+                            final userCredential = await GoogleSignInService.signInWithGoogle();
+                            if (userCredential != null) {
+                              print('Signed in: ${userCredential.user?.displayName}');
+                            } else {
+                              print('Google Sign-In failed');
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 50), // Full width
+                          ),
                         ),
                         const SizedBox(height: 16),
                         Row(
