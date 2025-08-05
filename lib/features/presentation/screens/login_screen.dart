@@ -1,5 +1,5 @@
 import 'package:ecommerse_app/google_service.dart';
-import 'package:ecommerse_app/home_screen.dart';
+import 'package:ecommerse_app/features/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/svg.dart';

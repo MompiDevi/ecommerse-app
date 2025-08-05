@@ -7,13 +7,19 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  bloc: ^9.0.0
+  equatable: ^2.0.7
   firebase_auth: ^4.20.0
   firebase_core: ^2.32.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
+  flutter_launcher_icons: ^0.14.4
+  flutter_stripe: ^11.5.0
   flutter_svg: ^2.0.10+1
   google_sign_in: ^6.2.2
-
+  http: ^1.2.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -22,4 +28,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/svg/
+  - assets/svg/
+  - assets/png/
+ 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/png/logo.png"
+  remove_alpha_ios: true

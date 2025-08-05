@@ -1,20 +1,14 @@
 import 'dart:ui';
+import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String price;
-  final double rating;
+  final Product product;
   final VoidCallback onTap;
 
   const ProductCard({
     Key? key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.rating,
-    required this.onTap,
+    required this.onTap, required this.product,
   }) : super(key: key);
 
   @override
@@ -40,7 +34,7 @@ class ProductCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.network(
-                imageUrl,
+                product.image,
                 height: double.infinity,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -61,7 +55,7 @@ class ProductCard extends StatelessWidget {
                     Icon(Icons.star, color: Colors.orange, size: 14),
                     SizedBox(width: 2),
                     Text(
-                      rating.toStringAsFixed(1),
+                      '4.5',
                       style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -99,7 +93,7 @@ class ProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          product.title,
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -108,7 +102,7 @@ class ProductCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          price,
+                          product.price.toString(),
                           style: TextStyle(
                             color: Colors.black87,
                             fontSize: 12,
