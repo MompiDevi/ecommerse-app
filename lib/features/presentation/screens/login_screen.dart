@@ -1,10 +1,9 @@
-import 'package:ecommerse_app/google_service.dart';
 import 'package:ecommerse_app/features/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -73,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Welcome Back!",
+                  AppStrings.welcomeBack,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -82,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  "Login to your account",
+                  AppStrings.loginToAccount,
                   style: TextStyle(
                     fontSize: 16,
                     color: AppColors.grey54,
@@ -108,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
-                            labelText: "Email",
+                            labelText: AppStrings.email,
                             prefixIcon: Icon(Icons.email_outlined),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -120,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
-                            labelText: "Password",
+                            labelText: AppStrings.password,
                             prefixIcon: Icon(Icons.lock_outline),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -135,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               // Forgot Password Logic
                             },
                             child: const Text(
-                              "Forgot Password?",
+                              AppStrings.forgotPassword,
                               style: TextStyle(
                                 color: AppColors.grey54,
                                 fontWeight: FontWeight.w500,
@@ -158,11 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: _loading
                                 ? const CircularProgressIndicator(color: AppColors.card)
                                 : const Text(
-                                    "Login",
+                                    AppStrings.login,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.white,
+                                      color: AppColors.card,
                                     ),
                                   ),
                           ),
@@ -185,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Image.asset('assets/png/google_logo.png', width: 24, height: 24),
                               SizedBox(width: 12),
-                              Text('Sign in with Google', style: TextStyle(color: Colors.black)),
+                              Text(AppStrings.signInWithGoogle, style: TextStyle(color: Colors.black)),
                             ],
                           ),
                         ),
@@ -194,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              "Don't have an account?",
+                              AppStrings.dontHaveAccount,
                               style: TextStyle(
                                 color: AppColors.grey54,
                               ),
@@ -204,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Navigate to Sign Up
                               },
                               child: const Text(
-                                "Sign Up",
+                                AppStrings.signUp,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black87,

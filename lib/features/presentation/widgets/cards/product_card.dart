@@ -7,14 +7,33 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
+  final bool showHero;
 
   const ProductCard({
     Key? key,
-    required this.onTap, required this.product,
+    required this.onTap,
+    required this.product,
+    this.showHero = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget = ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: ProductImage(
+        imageUrl: product.image,
+        width: double.infinity,
+        height: double.infinity,
+        borderRadius: 16,
+        fit: BoxFit.cover,
+      ),
+    );
+    if (showHero) {
+      imageWidget = Hero(
+        tag: 'product-image-${product.id}',
+        child: imageWidget,
+      );
+    }
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -32,17 +51,7 @@ class ProductCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Product Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: ProductImage(
-                imageUrl: product.image,
-                width: double.infinity,
-                height: double.infinity,
-                borderRadius: 16,
-                fit: BoxFit.cover,
-              ),
-            ),
+            imageWidget,
             // Rating Badge
             Positioned(
               top: 8,

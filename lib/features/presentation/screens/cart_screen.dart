@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
@@ -14,7 +15,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.grey100,
       appBar: AppBar(
-        title: const Text('Cart'),),
+        title: const Text(AppStrings.cart),),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, productsState) {
           if (productsState is ProductLoaded) {
@@ -57,7 +58,7 @@ class CartScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                           MaterialPageRoute(
-                          builder: (context) =>  PaymentSuccessScreen(amount: total,currency: 'usd',merchantDisplayName: 'Landmark',),
+                          builder: (context) =>  PaymentSuccessScreen(amount: total,currency: 'usd',merchantDisplayName: AppStrings.merchantName,),
                         ));
                         },
                       ),

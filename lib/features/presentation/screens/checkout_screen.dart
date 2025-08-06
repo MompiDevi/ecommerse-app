@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -14,7 +15,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return Scaffold(
   backgroundColor: Colors.white,
   appBar: AppBar(
-    title: Text('Checkout', style: TextStyle(fontWeight: FontWeight.bold)),
+    title: Text(AppStrings.checkout, style: TextStyle(fontWeight: FontWeight.bold)),
     elevation: 0,
     backgroundColor: AppColors.transparent,
     centerTitle: true,
@@ -45,18 +46,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Delivery Address',
+                    Text(AppStrings.deliveryAddress,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16)),
                     SizedBox(height: 8),
-                    Text(
-                        'John Doe\n123 Main Street\nCity, ZIP 45678\nCountry'),
+                    Text(AppStrings.sampleAddress),
                   ],
                 ),
               ),
               OutlinedButton(
                 onPressed: () {},
-                child: Text('Change'),
+                child: Text(AppStrings.change),
               ),
             ],
           ),
@@ -88,7 +88,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
               OutlinedButton(
                 onPressed: () {},
-                child: Text('Change'),
+                child: Text(AppStrings.change),
               ),
             ],
           ),

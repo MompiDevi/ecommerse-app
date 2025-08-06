@@ -26,4 +26,14 @@ class AppStrings {
   static const String error = "Error";
   static const String unableToLoadProducts = "Unable to load products.";
   static const String somethingWentWrongCart = "Something went wrong with your cart.";
+  static const String email = "Email";
+  static const String password = "Password";
+  static const String signInWithGoogle = "Sign in with Google";
+  static const String cart = "Cart";
+  static const String merchantName = "Landmark";
+  static const String deliveryAddress = "Delivery Address";
+  static const String sampleAddress = "John Doe\n123 Main Street\nCity, ZIP 45678\nCountry";
+  static const String change = "Change";
+  static const String qty = "Qty:";
+  static const String rating45 = "4.5";
 }

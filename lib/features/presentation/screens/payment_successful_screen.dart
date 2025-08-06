@@ -48,7 +48,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     children: [
                       const Icon(
                         Icons.check_circle,
-                        color: Colors.green,
+                        color: AppColors.success,
                         size: 100,
                       ),
                       const SizedBox(height: 20),
@@ -65,7 +65,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.grey,
+                          color: AppColors.grey,
                         ),
                       ),
                       const SizedBox(height: 40),
@@ -87,7 +87,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     children: [
                       const Icon(
                         Icons.error,
-                        color: Colors.red,
+                        color: AppColors.error,
                         size: 100,
                       ),
                       const SizedBox(height: 20),

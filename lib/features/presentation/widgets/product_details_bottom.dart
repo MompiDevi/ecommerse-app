@@ -6,6 +6,7 @@ import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
 
 class ProductDetailsBottom extends StatefulWidget {
   final Product product;
@@ -131,7 +132,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             const SizedBox(height: 16),
             // Sizes
             const Text(
-              "Size",
+              AppStrings.size,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -174,7 +175,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             const SizedBox(height: 16),
             // Description
             const Text(
-              "Description",
+              AppStrings.description,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
@@ -187,7 +188,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 listener: (context, state) {
                   if (state is CartLoaded) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Item added to cart!')),
+                      const SnackBar(content: Text(AppStrings.itemAddedToCart)),
                     );
                   } else if (state is CartError) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -196,7 +197,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                   }
                 },
                 child: AppButton(
-                  label: "Add to Cart",
+                  label: AppStrings.addToCart,
                   onPressed: () {
                     context.read<CartBloc>().add(AddToCartEvent(
                           cart: Cart(

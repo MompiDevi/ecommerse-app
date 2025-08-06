@@ -1,14 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerse_app/core/theme/app_colors.dart';
-import 'package:ecommerse_app/features/domain/entities/cart.dart';
-import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
-import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_details_header.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_details_bottom.dart';
+import 'package:ecommerse_app/features/presentation/widgets/product_carousel.dart';
+import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Product product;
@@ -37,6 +36,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               ),
               ProductDetailsBottom(product: widget.product),
+              // Related products carousel
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoaded) {
+                    // Exclude the current product from related
+                    final related = state.products.where((p) => p.id != widget.product.id).take(8).toList();
+                    return ProductCarousel(
+                      products: related,
+                      onProductTap: (product) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(product: product),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return SizedBox.shrink();
+                },
+              ),
             ],
           ),
         ),

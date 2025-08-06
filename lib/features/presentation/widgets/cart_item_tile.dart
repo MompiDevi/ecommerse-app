@@ -5,6 +5,7 @@ import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_image.dart';
 import 'package:ecommerse_app/features/presentation/widgets/quantity_selector.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
 
 class CartItemTile extends StatelessWidget {
   final Product product;
@@ -57,7 +58,7 @@ class CartItemTile extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                   ),
                   const SizedBox(height: 4),
-                  Text('Qty: $quantity'),
+                  Text('${AppStrings.qty} $quantity'),
                   const SizedBox(height: 8),
                   QuantitySelector(
                     quantity: quantity,

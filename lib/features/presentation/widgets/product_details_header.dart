@@ -1,10 +1,10 @@
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/features/presentation/widgets/app_icon_button.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_image.dart';
 import 'package:ecommerse_app/features/presentation/widgets/cart_icon_count.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
-import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 
 class ProductDetailsHeader extends StatelessWidget {
   final Product product;
@@ -30,7 +30,7 @@ class ProductDetailsHeader extends StatelessWidget {
             children: [
               AppIconButton(icon: Icons.arrow_back, onPressed: onBack),
               const Text(
-                'Details',
+                AppStrings.details,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -44,14 +44,17 @@ class ProductDetailsHeader extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: ProductImage(
-                  imageUrl: product.image,
-                  width: double.infinity,
-                  height: 300,
-                  borderRadius: 12,
-                  fit: BoxFit.cover,
+              Hero(
+                tag: 'product-image-${product.id}',
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: ProductImage(
+                    imageUrl: product.image,
+                    width: double.infinity,
+                    height: 300,
+                    borderRadius: 12,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(
@@ -68,7 +71,7 @@ class ProductDetailsHeader extends StatelessWidget {
                       Icon(Icons.star, color: AppColors.amber, size: 16),
                       SizedBox(width: 4),
                       Text(
-                        '4.5',
+                        AppStrings.rating45,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                         ),

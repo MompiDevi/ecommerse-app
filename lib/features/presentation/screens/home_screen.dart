@@ -1,12 +1,12 @@
+import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
-import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
-import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:ecommerse_app/features/presentation/screens/details_screen.dart';
 import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
 import 'package:ecommerse_app/features/presentation/widgets/cart_icon_count.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/cards/product_card.dart';
+import '../widgets/cards/animated_card.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.logout),
-              title: const Text('Sign Out'),
+              title: const Text(AppStrings.signOut),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
                 Navigator.of(context).pushAndRemoveUntil(
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.amber100,
       appBar: AppBar(
         backgroundColor: AppColors.amber100,
-        title: Text('E-Shop'),
+        title: Text(AppStrings.eShop),
         actions: [
           CartIconCount(),
         ],
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: state.products.length + (state.hasMore ? 1 : 0),
                 itemBuilder: (context, index) {
                   if (index < state.products.length) {
-                    return ProductCard(
+                    final card = ProductCard(
                       product: state.products[index],
                       onTap: () {
                         Navigator.push(
@@ -121,6 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                     );
+                    if (index < 6) {
+                      return AnimatedCard(
+                        index: index,
+                        child: card,
+                      );
+                    } else {
+                      return card;
+                    }
                   } else {
                     // Show loading indicator at the end
                     return Center(child: Padding(
