@@ -2,6 +2,7 @@ import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:ecommerse_app/features/presentation/screens/details_screen.dart';
 import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
+import 'package:ecommerse_app/features/presentation/widgets/cart_icon_count.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/cards/product_card.dart';
@@ -81,50 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.amber.shade100,
         title: Text('E-Shop'),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(Icons.shopping_bag_outlined),
-                IconButton(
-                  icon: Icon(Icons.shopping_bag_outlined),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CartScreen(),
-                        ));
-                  },
-                ),
-                BlocBuilder<CartBloc, CartState>(
-                  builder: (context, state) {
-                    int itemCount = 0;
-                    if (state is CartLoaded) {
-                      itemCount = state.cart?.products.length ?? 0;
-                    }
-                    return itemCount > 0
-                        ? Positioned(
-                            top: 6,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Text(
-                                '$itemCount',
-                                style: const TextStyle(fontSize: 10, color: Colors.white),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink();
-                  },
-                )
-              ],
-            ),
-          ),
+          CartIconCount(),
         ],
       ),
       body: BlocBuilder<ProductBloc, ProductState>(

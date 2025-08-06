@@ -21,7 +21,7 @@ class CartRemoteDataSource{
 
   Future<void> addToCart(CartModel model) async {
     final response = await http.post(Uri.parse('https://fakestoreapi.com/carts'), body: model.toJson());
-    if(response.statusCode != 200){
+    if(response.statusCode != 201){
       throw Exception(response.reasonPhrase);
     }
   }

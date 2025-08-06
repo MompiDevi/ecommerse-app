@@ -182,26 +182,39 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             // Buttons
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  context.read<CartBloc>().add(AddToCartEvent(
-                        cart: Cart(
-                          date: DateTime.now(),
-                          userId: 1,
-                          products: [CartProduct(productID: widget.product.id, quantity: quantity)],
-                        ),
-                      ));
+              child: BlocListener<CartBloc, CartState>(
+                listener: (context, state) {
+                  if (state is CartLoaded) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Item added to cart!')),
+                    );
+                  } else if (state is CartError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.message)),
+                    );
+                  }
                 },
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(28),
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.read<CartBloc>().add(AddToCartEvent(
+                          cart: Cart(
+                            date: DateTime.now(),
+                            userId: 1,
+                            products: [CartProduct(productID: widget.product.id, quantity: quantity)],
+                          ),userId: 1
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: Colors.amber,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(28),
+                    ),
                   ),
+                  child: const Text("Add to Cart"),
                 ),
-                child: const Text("Add to Cart"),
               ),
             ),
           ],

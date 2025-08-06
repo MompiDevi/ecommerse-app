@@ -27,21 +27,30 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     on<AddToCartEvent>((event, emit) async {
       emit(CartLoading());
-       try{
+      try {
         await addToCart(cart: event.cart);
-        emit(ItemAddedToCart());
-      } catch (e){
-        emit(CartError(message: e.toString()));
+        final cartData = await getCart(userId: event.userId);
+        emit(CartLoaded(cart: cartData));
+      } catch (e) {
+        Cart? previousCart;
+        if (state is CartLoaded) {
+          previousCart = (state as CartLoaded).cart;
+        }
+        emit(CartError(message: e.toString(), previousCart: previousCart));
       }
     });
 
     on<RemoveFromCart>((event, emit) async {
       emit(CartLoading());
-      try{
+      try {
         final cartData = await removeCart(productId: event.productId);
         emit(CartLoaded(cart: cartData));
-      } catch (e){
-        emit(CartError(message: e.toString()));
+      } catch (e) {
+        Cart? previousCart;
+        if (state is CartLoaded) {
+          previousCart = (state as CartLoaded).cart;
+        }
+        emit(CartError(message: e.toString(), previousCart: previousCart));
       }
     });
 
@@ -53,7 +62,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         final cartData = await getCart(userId: event.userId);
         emit(CartLoaded(cart: cartData));
       } catch (e) {
-        emit(CartError(message: 'Failed to update cart item quantity.'));
+        Cart? previousCart;
+        if (state is CartLoaded) {
+          previousCart = (state as CartLoaded).cart;
+        }
+        emit(CartError(message: 'Failed to update cart item quantity.', previousCart: previousCart));
       }
     });
 

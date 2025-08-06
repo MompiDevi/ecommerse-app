@@ -12,11 +12,10 @@ final class CartLoaded extends CartState {
   
   CartLoaded({required this.cart});
 }
-final class ItemAddedToCart extends CartState {}
 
 final class CartError extends CartState {
   final String message;
+  final Cart? previousCart;
 
-  CartError({required this.message});
-  
+  CartError({required this.message, this.previousCart});
 }

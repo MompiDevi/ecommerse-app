@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/features/presentation/widgets/cart_icon_count.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
@@ -20,7 +21,7 @@ class ProductDetailsHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.only(left:16,bottom: 8, top: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -32,7 +33,7 @@ class ProductDetailsHeader extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              _buildIconButton(Icons.shopping_bag_outlined, onCart),
+              const CartIconCount()
             ],
           ),
         ),

@@ -12,14 +12,15 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     on<StartPayment>((event, emit) async {
       emit(PaymentLoading());
       try {
-        final result = await confirmPaymentUseCase(
-          clientSecret: event.clientSecret,
-          paymentMethodParams: event.paymentMethodParams,
+        String status = await confirmPaymentUseCase(
+          amount: event.amount,
+          currency: event.currency,
+          merchantDisplayName: event.merchantDisplayName,
         );
-        if (result != null && result.status == PaymentIntentsStatus.Succeeded) {
+        if(status == 'Success') {
           emit(PaymentSuccess());
         } else {
-          emit(PaymentFailure('Payment failed or cancelled.'));
+          emit(PaymentFailure('Payment failed'));
         }
       } catch (e) {
         emit(PaymentFailure(e.toString()));

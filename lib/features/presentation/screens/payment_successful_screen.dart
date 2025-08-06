@@ -2,9 +2,21 @@ import 'package:ecommerse_app/features/presentation/blocs/payment/payment_bloc.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PaymentSuccessScreen extends StatelessWidget {
-  const PaymentSuccessScreen({super.key});
+class PaymentSuccessScreen extends StatefulWidget {
+  const PaymentSuccessScreen({super.key, required this.amount, required this.currency, required this.merchantDisplayName});
+  final double amount;
+  final String currency;
+  final String merchantDisplayName;
+  @override
+  State<PaymentSuccessScreen> createState() => _PaymentSuccessScreenState();
+}
 
+class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<PaymentBloc>(context).add(StartPayment(widget.amount, widget.currency, widget.merchantDisplayName));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

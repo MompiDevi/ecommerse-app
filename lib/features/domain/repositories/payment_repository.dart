@@ -1,5 +1,5 @@
-import 'package:flutter_stripe/flutter_stripe.dart';
-
 abstract class PaymentRepository {
-  Future<PaymentIntent?> confirmPayment({required String clientSecret, required PaymentMethodParams paymentMethodParams});
+  Future<String> confirmPayment({required double amount,
+    required String currency,
+    required String merchantDisplayName,});
 }

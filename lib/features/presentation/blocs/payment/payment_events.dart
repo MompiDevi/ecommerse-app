@@ -4,9 +4,10 @@ part of 'payment_bloc.dart';
 sealed class PaymentEvent {}
 
 class StartPayment extends PaymentEvent {
-  final String clientSecret;
-  final PaymentMethodParams paymentMethodParams;
-  StartPayment({required this.clientSecret, required this.paymentMethodParams});
+  final double amount;
+  final String currency;
+  final String merchantDisplayName;
+  StartPayment(this.amount, this.currency, this.merchantDisplayName,);
 }
 class PaymentSucceeded extends PaymentEvent {}
 class PaymentFailed extends PaymentEvent {

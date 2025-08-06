@@ -6,7 +6,9 @@ class PaymentRepositoryImpl implements PaymentRepository {
   final StripePaymentDataSource dataSource;
   PaymentRepositoryImpl(this.dataSource);
   @override
-  Future<PaymentIntent?> confirmPayment({required String clientSecret, required PaymentMethodParams paymentMethodParams}) {
-    return dataSource.confirmPayment(clientSecret: clientSecret, paymentMethodParams: paymentMethodParams);
+  Future<String> confirmPayment({required double amount,
+    required String currency,
+    required String merchantDisplayName,}) async {
+    return await dataSource.confirmPayment(amount: amount, currency: currency, merchantDisplayName: merchantDisplayName);
   }
 }

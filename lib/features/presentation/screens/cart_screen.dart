@@ -53,9 +53,11 @@ class CartScreen extends StatelessWidget {
                         deliveryFee: deliveryFee,
                         total: total,
                         onCheckout: () {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => PaymentSuccessScreen(),
-                          ));
+                          Navigator.push(
+                            context,
+                          MaterialPageRoute(
+                          builder: (context) =>  PaymentSuccessScreen(amount: total,currency: 'usd',merchantDisplayName: 'Landmark',),
+                        ));
                         },
                       ),
                     ],

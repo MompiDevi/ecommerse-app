@@ -1,8 +1,4 @@
-import 'package:ecommerse_app/core/constants.dart';
-import 'package:ecommerse_app/features/presentation/blocs/payment/payment_bloc.dart';
-import 'package:ecommerse_app/features/presentation/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartSummarySection extends StatelessWidget {
   final double subtotal;
@@ -35,16 +31,7 @@ class CartSummarySection extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              // Replace with your actual PaymentBloc and clientSecret
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PaymentScreen(
-                    clientSecret: stripeSecretKey, 
-                    paymentBloc: BlocProvider.of<PaymentBloc>(context),
-                  ),
-                ),
-              );
+             onCheckout();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.amber,

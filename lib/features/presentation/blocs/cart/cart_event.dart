@@ -11,8 +11,8 @@ class LoadCart extends CartEvent{
 
 class AddToCartEvent extends CartEvent{
   final Cart cart;
-
-  AddToCartEvent({required this.cart});
+  final int userId;
+  AddToCartEvent({required this.cart, required this.userId});
 }
 
 class RemoveFromCart extends CartEvent {
