@@ -1,8 +1,5 @@
 import 'package:ecommerse_app/core/constants.dart';
 import 'package:ecommerse_app/core/theme/app_theme.dart';
-import 'package:ecommerse_app/features/data/datasource/cart_remote_datasource.dart';
-import 'package:ecommerse_app/features/data/datasource/payment_datasource.dart';
-import 'package:ecommerse_app/features/data/datasource/product_remote_datasource.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/blocs/payment/payment_bloc.dart';
 import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
@@ -19,10 +16,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   Stripe.publishableKey = stripePublishableKey;
-  await Stripe.instance.applySettings();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  sl<FirebaseApp>(); 
+  await sl<Stripe>().applySettings();
   runApp(const MainApp());
 }
 

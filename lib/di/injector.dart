@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get_it/get_it.dart';
 import '../features/data/datasource/cart_remote_datasource.dart';
 import '../features/data/datasource/payment_datasource.dart';
@@ -21,6 +24,11 @@ import '../features/presentation/blocs/product/product_bloc.dart';
 final sl = GetIt.instance;
 
 void setupLocator() {
+  // Firebase and Stripe DI
+  sl.registerLazySingleton<FirebaseApp>(() => Firebase.app());
+  sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  sl.registerLazySingleton<Stripe>(() => Stripe.instance);
+
   // Data sources
   sl.registerLazySingleton<ProductRemoteDataSource>(() => ProductRemoteDataSource());
   sl.registerLazySingleton<CartRemoteDataSource>(() => CartRemoteDataSource());
