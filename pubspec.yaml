@@ -25,6 +25,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.0
 
+# dependency_overrides:
+#   stripe_platform_interface: 8.0.0
 flutter:
   uses-material-design: true
   assets:
@@ -35,4 +37,3 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/png/logo.png"
-  remove_alpha_ios: true

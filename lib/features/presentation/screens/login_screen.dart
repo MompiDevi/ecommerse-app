@@ -172,15 +172,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ElevatedButton(
                           child: SvgPicture.asset(
                             'assets/svg/google_logo.svg',
-                            
                           ),
                           onPressed: () async {
-                            final userCredential = await GoogleSignInService.signInWithGoogle();
-                            if (userCredential != null) {
-                              print('Signed in: ${userCredential.user?.displayName}');
-                            } else {
-                              print('Google Sign-In failed');
-                            }
+                            _signInWithGoogle();
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 50), // Full width
