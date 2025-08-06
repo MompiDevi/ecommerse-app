@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class CartIconCount extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: AppColors.card,
               shape: BoxShape.circle,
             ),
             child: IconButton(
@@ -59,12 +60,12 @@ class CartIconCount extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(4),
                         decoration: const BoxDecoration(
-                          color: Colors.red,
+                          color: AppColors.badge,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
                           '$itemCount',
-                          style: const TextStyle(fontSize: 10, color: Colors.white),
+                          style: const TextStyle(fontSize: 10, color: AppColors.card),
                         ),
                       ),
                     )

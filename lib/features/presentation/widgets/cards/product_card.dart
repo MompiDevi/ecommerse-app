@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/features/presentation/widgets/product_image.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +21,7 @@ class ProductCard extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
+          color: AppColors.card,
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
@@ -33,10 +35,11 @@ class ProductCard extends StatelessWidget {
             // Product Image
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network(
-                product.image,
-                height: double.infinity,
+              child: ProductImage(
+                imageUrl: product.image,
                 width: double.infinity,
+                height: double.infinity,
+                borderRadius: 16,
                 fit: BoxFit.cover,
               ),
             ),
@@ -47,12 +50,12 @@ class ProductCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.white70,
+                  color: AppColors.grey12,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: Colors.orange, size: 14),
+                    Icon(Icons.star, color: AppColors.orange, size: 14),
                     SizedBox(width: 2),
                     Text(
                       '4.5',
@@ -69,7 +72,7 @@ class ProductCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Colors.white70,
+                  color: AppColors.grey12,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.favorite_border, size: 16),
@@ -87,7 +90,7 @@ class ProductCard extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
-                    color: Colors.white.withOpacity(0.3),
+                    color: AppColors.card.withOpacity(0.3),
                     padding: EdgeInsets.all(8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +98,7 @@ class ProductCard extends StatelessWidget {
                         Text(
                           product.title,
                           style: TextStyle(
-                            color: Colors.black,
+                            color: AppColors.onSecondary,
                             fontWeight: FontWeight.bold,
                           ),
                           maxLines: 1,
@@ -104,7 +107,7 @@ class ProductCard extends StatelessWidget {
                         Text(
                           product.price.toString(),
                           style: TextStyle(
-                            color: Colors.black87,
+                            color: AppColors.grey87,
                             fontSize: 12,
                           ),
                         ),

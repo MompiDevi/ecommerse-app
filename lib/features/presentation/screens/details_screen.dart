@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/domain/entities/cart.dart';
 import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
@@ -21,7 +22,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: AppColors.grey200,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

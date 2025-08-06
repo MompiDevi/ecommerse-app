@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F4F2),
+      backgroundColor: AppColors.grey100,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32),
@@ -84,17 +85,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Login to your account",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black54,
+                    color: AppColors.grey54,
                   ),
                 ),
                 const SizedBox(height: 32),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.card,
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black12,
+                        color: AppColors.grey12,
                         blurRadius: 8,
                         offset: Offset(0, 4),
                       )
@@ -136,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               "Forgot Password?",
                               style: TextStyle(
-                                color: Colors.black54,
+                                color: AppColors.grey54,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -148,14 +149,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: _loading ? null : _signInWithEmail,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.amber[600],
+                              backgroundColor: AppColors.amber600,
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
                             child: _loading
-                                ? const CircularProgressIndicator(color: Colors.white)
+                                ? const CircularProgressIndicator(color: AppColors.card)
                                 : const Text(
                                     "Login",
                                     style: TextStyle(
@@ -169,15 +170,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16),
                         const Divider(),
                         const SizedBox(height: 16),
-                        ElevatedButton(
-                          child: SvgPicture.asset(
-                            'assets/svg/google_logo.svg',
+                       OutlinedButton(
+                          onPressed: _signInWithGoogle,
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: AppColors.card,
+                            side: BorderSide(color: AppColors.greyShade300),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            minimumSize: Size(double.infinity, 50),
                           ),
-                          onPressed: () async {
-                            _signInWithGoogle();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(double.infinity, 50), // Full width
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/png/google_logo.png', width: 24, height: 24),
+                              SizedBox(width: 12),
+                              Text('Sign in with Google', style: TextStyle(color: Colors.black)),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -187,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Text(
                               "Don't have an account?",
                               style: TextStyle(
-                                color: Colors.black54,
+                                color: AppColors.grey54,
                               ),
                             ),
                             TextButton(

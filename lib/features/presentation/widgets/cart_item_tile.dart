@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
+import 'package:ecommerse_app/features/presentation/widgets/product_image.dart';
+import 'package:ecommerse_app/features/presentation/widgets/quantity_selector.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 
 class CartItemTile extends StatelessWidget {
   final Product product;
@@ -18,10 +21,10 @@ class CartItemTile extends StatelessWidget {
     return Dismissible(
       key: ValueKey(product.id),
       background: Container(
-        color: Colors.redAccent,
+        color: AppColors.redAccent,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Icon(Icons.delete, color: Colors.white),
+        child: const Icon(Icons.delete, color: AppColors.onPrimary),
       ),
       direction: DismissDirection.endToStart,
       onDismissed: (_) {
@@ -30,18 +33,18 @@ class CartItemTile extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.card,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                product.image,
+              child: ProductImage(
+                imageUrl: product.image,
                 width: 80,
                 height: 80,
-                fit: BoxFit.cover,
+                borderRadius: 12,
               ),
             ),
             const SizedBox(width: 12),
@@ -56,27 +59,23 @@ class CartItemTile extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text('Qty: $quantity'),
                   const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      _quantityButton(context, Icons.remove, () {
-                        context.read<CartBloc>().add(UpdateCartItemQuantity(
-                          productId: product.id,
-                          newQuantity: quantity - 1,
-                          userId: 1,
-                        ));
-                      }),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(quantity.toString().padLeft(2, '0')),
-                      ),
-                      _quantityButton(context, Icons.add, () {
-                        context.read<CartBloc>().add(UpdateCartItemQuantity(
-                          productId: product.id,
-                          newQuantity: quantity + 1,
-                          userId: 1,
-                        ));
-                      }),
-                    ],
+                  QuantitySelector(
+                    quantity: quantity,
+                    onDecrement: () {
+                      context.read<CartBloc>().add(UpdateCartItemQuantity(
+                        productId: product.id,
+                        newQuantity: quantity - 1,
+                        userId: 1,
+                      ));
+                    },
+                    onIncrement: () {
+                      context.read<CartBloc>().add(UpdateCartItemQuantity(
+                        productId: product.id,
+                        newQuantity: quantity + 1,
+                        userId: 1,
+                      ));
+                    },
+                    min: 1,
                   ),
                 ],
               ),
@@ -87,21 +86,6 @@ class CartItemTile extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _quantityButton(BuildContext context, IconData icon, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.grey),
-        ),
-        padding: const EdgeInsets.all(4),
-        child: Icon(icon, size: 16),
       ),
     );
   }

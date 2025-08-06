@@ -1,3 +1,6 @@
+import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/features/presentation/widgets/app_icon_button.dart';
+import 'package:ecommerse_app/features/presentation/widgets/product_image.dart';
 import 'package:ecommerse_app/features/presentation/widgets/cart_icon_count.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
@@ -25,7 +28,7 @@ class ProductDetailsHeader extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildIconButton(Icons.arrow_back, onBack),
+              AppIconButton(icon: Icons.arrow_back, onPressed: onBack),
               const Text(
                 'Details',
                 style: TextStyle(
@@ -43,10 +46,11 @@ class ProductDetailsHeader extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  product.image,
-                  height: 300,
+                child: ProductImage(
+                  imageUrl: product.image,
                   width: double.infinity,
+                  height: 300,
+                  borderRadius: 12,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -56,12 +60,12 @@ class ProductDetailsHeader extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.card,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
-                    children: const [
-                      Icon(Icons.star, color: Colors.amber, size: 16),
+                    children: [
+                      Icon(Icons.star, color: AppColors.amber, size: 16),
                       SizedBox(width: 4),
                       Text(
                         '4.5',
@@ -77,19 +81,6 @@ class ProductDetailsHeader extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-      ),
-      child: IconButton(
-        icon: Icon(icon),
-        onPressed: onPressed,
-      ),
     );
   }
 }

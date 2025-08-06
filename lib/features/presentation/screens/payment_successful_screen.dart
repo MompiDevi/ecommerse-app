@@ -1,3 +1,6 @@
+import 'package:ecommerse_app/core/app_strings.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
 import 'package:ecommerse_app/features/presentation/blocs/payment/payment_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +23,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.card,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -34,7 +37,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       CircularProgressIndicator(),
                       SizedBox(height: 20),
                       Text(
-                        "Processing your payment...",
+                        AppStrings.processingPayment,
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -50,7 +53,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       ),
                       const SizedBox(height: 20),
                       const Text(
-                        "Payment Successful!",
+                        AppStrings.paymentSuccessful,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -58,7 +61,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        "Thank you for your purchase. Your order is being processed.",
+                        AppStrings.paymentSuccessMessage,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -66,26 +69,15 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      ElevatedButton(
+                      AppButton(
+                        label: AppStrings.backToHome,
                         onPressed: () {
                           Navigator.of(context).popUntil((route) => route.isFirst);
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 14,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Text(
-                          "Back to Home",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        borderRadius: 12,
+                        height: 48,
                       )
                     ],
                   );
@@ -100,7 +92,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       ),
                       const SizedBox(height: 20),
                       const Text(
-                        "Payment Failed",
+                        AppStrings.paymentFailed,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -116,26 +108,15 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      ElevatedButton(
+                      AppButton(
+                        label: AppStrings.tryAgain,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 14,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Text(
-                          "Try Again",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        borderRadius: 12,
+                        height: 48,
                       )
                     ],
                   );

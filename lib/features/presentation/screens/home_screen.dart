@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:ecommerse_app/features/presentation/screens/details_screen.dart';
@@ -51,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.amber.shade100,
+                color: AppColors.amber100,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -77,9 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      backgroundColor: Colors.amber.shade100,
+      backgroundColor: AppColors.amber100,
       appBar: AppBar(
-        backgroundColor: Colors.amber.shade100,
+        backgroundColor: AppColors.amber100,
         title: Text('E-Shop'),
         actions: [
           CartIconCount(),

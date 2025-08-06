@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerse_app/core/app_strings.dart';
+import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
+import 'package:ecommerse_app/features/presentation/widgets/summary_row.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 
 class CartSummarySection extends StatelessWidget {
   final double subtotal;
@@ -19,54 +23,23 @@ class CartSummarySection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.card,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
         children: [
-          _summaryRow('Sub-total', subtotal),
-          _summaryRow('Delivery Fee', deliveryFee),
+          SummaryRow(label: AppStrings.subTotal, value: '₹${subtotal.toStringAsFixed(2)}'),
+          SummaryRow(label: AppStrings.deliveryFee, value: '₹${deliveryFee.toStringAsFixed(2)}'),
           const Divider(),
-          _summaryRow('Total Cost', total, isTotal: true),
+          SummaryRow(label: AppStrings.totalCost, value: '₹${total.toStringAsFixed(2)}', isTotal: true),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-             onCheckout();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              minimumSize: const Size(double.infinity, 50),
-            ),
-            child: const Text('Checkout'),
+          AppButton(
+            label: AppStrings.checkout,
+            onPressed: onCheckout,
+            backgroundColor: Colors.amber,
+            foregroundColor: Colors.black,
+            borderRadius: 12,
           )
-        ],
-      ),
-    );
-  }
-
-  Widget _summaryRow(String label, double amount, {bool isTotal = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              fontSize: isTotal ? 16 : 14,
-            ),
-          ),
-          Text(
-            '₹${amount.toStringAsFixed(2)}',
-            style: TextStyle(
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              fontSize: isTotal ? 16 : 14,
-            ),
-          ),
         ],
       ),
     );

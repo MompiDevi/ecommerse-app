@@ -4,6 +4,8 @@ import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:ecommerse_app/features/domain/entities/cart.dart';
 import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
+import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 
 class ProductDetailsBottom extends StatefulWidget {
   final Product product;
@@ -20,10 +22,10 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
   bool showFullDescription = false;
 
   final List<Color> colors = [
-    Color(0xFFD4C4B2),
-    Color(0xFF49626D),
-    Color(0xFFC5C3C1),
-    Color(0xFF9C9B9B),
+    AppColors.product1,
+    AppColors.product2,
+    AppColors.product3,
+    AppColors.product4,
   ];
 
   final List<String> sizes = ["S", "M", "L", "XL", "XXL"];
@@ -33,7 +35,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.card,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: SingleChildScrollView(
@@ -57,7 +59,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
+                    border: Border.all(color: AppColors.grey300),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Row(
@@ -113,8 +115,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: selectedColor == index
-                            ? Colors.amber
-                            : Colors.transparent,
+                            ? AppColors.amber
+                            : AppColors.transparent,
                         width: 2,
                       ),
                     ),
@@ -151,10 +153,9 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: isSelected ? Colors.amber : Colors.transparent,
+                        color: isSelected ? AppColors.amber : AppColors.transparent,
                         border: Border.all(
-                          color:
-                              isSelected ? Colors.amber : Colors.grey.shade300,
+                          color: isSelected ? AppColors.amber : AppColors.grey300,
                         ),
                         borderRadius: BorderRadius.circular(24),
                       ),
@@ -162,7 +163,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                         sizes[index],
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          color: isSelected ? Colors.white : Colors.black,
+                          color: isSelected ? AppColors.card : AppColors.onSecondary,
                         ),
                       ),
                     ),
@@ -194,7 +195,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                     );
                   }
                 },
-                child: ElevatedButton(
+                child: AppButton(
+                  label: "Add to Cart",
                   onPressed: () {
                     context.read<CartBloc>().add(AddToCartEvent(
                           cart: Cart(
@@ -204,16 +206,10 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                           ),userId: 1
                         ));
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: Colors.amber,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                  ),
-                  child: const Text("Add to Cart"),
+                  backgroundColor: AppColors.amber,
+                  foregroundColor: AppColors.onSecondary,
+                  borderRadius: 28,
+                  height: 50,
                 ),
               ),
             ),

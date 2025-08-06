@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -15,7 +16,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   appBar: AppBar(
     title: Text('Checkout', style: TextStyle(fontWeight: FontWeight.bold)),
     elevation: 0,
-    backgroundColor: Colors.transparent,
+    backgroundColor: AppColors.transparent,
     centerTitle: true,
   ),
   body: SingleChildScrollView(
@@ -27,11 +28,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Color(0xFFF9F9F9),
+            color: AppColors.card,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black12,
+                color: AppColors.grey12,
                 blurRadius: 8,
                 offset: Offset(0, 4),
               )
@@ -65,11 +66,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Color(0xFFF9F9F9),
+            color: AppColors.card,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black12,
+                color: AppColors.grey12,
                 blurRadius: 8,
                 offset: Offset(0, 4),
               )
@@ -80,7 +81,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: [
               Row(
                 children: [
-                  Icon(Icons.credit_card, color: Colors.black54),
+                  Icon(Icons.credit_card, color: AppColors.grey54),
                   SizedBox(width: 8),
                   Text('**** **** **** 1234'),
                 ],
@@ -97,11 +98,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Color(0xFFF9F9F9),
+            color: AppColors.card,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black12,
+                color: AppColors.grey12,
                 blurRadius: 8,
                 offset: Offset(0, 4),
               )
@@ -146,7 +147,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
+              backgroundColor: AppColors.amber,
               shape: StadiumBorder(),
             ),
             child: Text('Place Order'),

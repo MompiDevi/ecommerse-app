@@ -1,3 +1,4 @@
+import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
@@ -11,7 +12,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: AppColors.grey100,
       appBar: AppBar(
         title: const Text('Cart'),),
       body: BlocBuilder<ProductBloc, ProductState>(
