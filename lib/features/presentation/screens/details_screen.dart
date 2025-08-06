@@ -1,13 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
+import 'package:ecommerse_app/features/domain/entities/cart.dart';
+import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
+import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
 import 'package:ecommerse_app/features/presentation/screens/cart_screen.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
+import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_details_header.dart';
-import 'package:ecommerse_app/features/presentation/widgets/product_details_bottom.dart';
 import 'package:ecommerse_app/features/presentation/widgets/product_carousel.dart';
 import 'package:ecommerse_app/features/presentation/blocs/product/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerse_app/features/presentation/widgets/product_details_bottom.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Product product;
@@ -18,6 +23,18 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  int quantity = 1;
+  int selectedColor = 0;
+  int selectedSize = 1;
+
+  final List<Color> colors = [
+    AppColors.product1,
+    AppColors.product2,
+    AppColors.product3,
+    AppColors.product4,
+  ];
+  final List<String> sizes = ["S", "M", "L", "XL", "XXL"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +52,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   MaterialPageRoute(builder: (context) => CartScreen()),
                 ),
               ),
-              ProductDetailsBottom(product: widget.product),
+              ProductDetailsBottom(
+                product: widget.product,
+                quantity: quantity,
+                selectedColor: selectedColor,
+                selectedSize: selectedSize,
+                colors: colors,
+                sizes: sizes,
+                onQuantityChanged: (val) => setState(() => quantity = val),
+                onColorChanged: (val) => setState(() => selectedColor = val),
+                onSizeChanged: (val) => setState(() => selectedSize = val),
+              ),
               // Related products carousel
               BlocBuilder<ProductBloc, ProductState>(
                 builder: (context, state) {
@@ -58,6 +85,40 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 },
               ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: BlocListener<CartBloc, CartState>(
+            listener: (context, state) {
+              if (state is CartLoaded) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(AppStrings.itemAddedToCart)),
+                );
+              } else if (state is CartError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+            child: AppButton(
+              label: AppStrings.addToCart,
+              onPressed: () {
+                context.read<CartBloc>().add(AddToCartEvent(
+                      cart: Cart(
+                        date: DateTime.now(),
+                        userId: 1,
+                        products: [CartProduct(productID: widget.product.id, quantity: quantity)],
+                      ),userId: 1
+                    ));
+              },
+              backgroundColor: AppColors.amber,
+              foregroundColor: AppColors.onSecondary,
+              borderRadius: 28,
+              height: 50,
+            ),
           ),
         ),
       ),

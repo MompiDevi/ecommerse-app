@@ -53,7 +53,7 @@ class ProductDetailsHeader extends StatelessWidget {
                     width: double.infinity,
                     height: 300,
                     borderRadius: 12,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
               ),

@@ -1,35 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerse_app/features/domain/entities/product.dart';
-import 'package:ecommerse_app/features/domain/entities/cart.dart';
-import 'package:ecommerse_app/features/domain/entities/cart_product.dart';
-import 'package:ecommerse_app/features/presentation/blocs/cart/cart_bloc.dart';
-import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/core/app_strings.dart';
 
-class ProductDetailsBottom extends StatefulWidget {
+class ProductDetailsBottom extends StatelessWidget {
   final Product product;
-  const ProductDetailsBottom({Key? key, required this.product}) : super(key: key);
+  final int quantity;
+  final int selectedColor;
+  final int selectedSize;
+  final List<Color> colors;
+  final List<String> sizes;
+  final ValueChanged<int> onQuantityChanged;
+  final ValueChanged<int> onColorChanged;
+  final ValueChanged<int> onSizeChanged;
 
-  @override
-  State<ProductDetailsBottom> createState() => _ProductDetailsBottomState();
-}
-
-class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
-  int quantity = 1;
-  int selectedColor = 0;
-  int selectedSize = 1;
-  bool showFullDescription = false;
-
-  final List<Color> colors = [
-    AppColors.product1,
-    AppColors.product2,
-    AppColors.product3,
-    AppColors.product4,
-  ];
-
-  final List<String> sizes = ["S", "M", "L", "XL", "XXL"];
+  const ProductDetailsBottom({
+    Key? key,
+    required this.product,
+    required this.quantity,
+    required this.selectedColor,
+    required this.selectedSize,
+    required this.colors,
+    required this.sizes,
+    required this.onQuantityChanged,
+    required this.onColorChanged,
+    required this.onSizeChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +45,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
               children: [
                 Expanded(
                   child: Text(
-                    widget.product.title,
+                    product.title,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -67,9 +63,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          setState(() {
-                            if (quantity > 1) quantity--;
-                          });
+                          if (quantity > 1) onQuantityChanged(quantity - 1);
                         },
                         icon: const Icon(Icons.remove),
                       ),
@@ -79,9 +73,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                       ),
                       IconButton(
                         onPressed: () {
-                          setState(() {
-                            quantity++;
-                          });
+                          onQuantityChanged(quantity + 1);
                         },
                         icon: const Icon(Icons.add),
                       ),
@@ -93,7 +85,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             const SizedBox(height: 8),
             // Price
             Text(
-              "Rs. ${widget.product.price}",
+              "\$ ${product.price}",
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -104,11 +96,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             Row(
               children: List.generate(colors.length, (index) {
                 return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedColor = index;
-                    });
-                  },
+                  onTap: () => onColorChanged(index),
                   child: Container(
                     margin: const EdgeInsets.only(right: 8),
                     padding: const EdgeInsets.all(2),
@@ -142,11 +130,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 children: List.generate(sizes.length, (index) {
                   final isSelected = selectedSize == index;
                   return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedSize = index;
-                      });
-                    },
+                    onTap: () => onSizeChanged(index),
                     child: Container(
                       margin: const EdgeInsets.only(right: 8),
                       padding: const EdgeInsets.symmetric(
@@ -179,41 +163,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
-            Text(widget.product.description),
+            Text(product.description),
             const SizedBox(height: 16),
-            // Buttons
-            SizedBox(
-              width: double.infinity,
-              child: BlocListener<CartBloc, CartState>(
-                listener: (context, state) {
-                  if (state is CartLoaded) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text(AppStrings.itemAddedToCart)),
-                    );
-                  } else if (state is CartError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.message)),
-                    );
-                  }
-                },
-                child: AppButton(
-                  label: AppStrings.addToCart,
-                  onPressed: () {
-                    context.read<CartBloc>().add(AddToCartEvent(
-                          cart: Cart(
-                            date: DateTime.now(),
-                            userId: 1,
-                            products: [CartProduct(productID: widget.product.id, quantity: quantity)],
-                          ),userId: 1
-                        ));
-                  },
-                  backgroundColor: AppColors.amber,
-                  foregroundColor: AppColors.onSecondary,
-                  borderRadius: 28,
-                  height: 50,
-                ),
-              ),
-            ),
           ],
         ),
       ),
