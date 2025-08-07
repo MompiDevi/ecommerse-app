@@ -1,4 +1,4 @@
-String BASE_URL = 'https://fakestoreapi.com/';
+//Test Keys since backend is not available
 const String stripePublishableKey =
     'pk_test_51RszDEBwkGJVMopkQvOVNK147gAQePxFnnU86dedpS9ghseVA1a9GAEoU2fJiUq9XdLPKNYgdBOU02PEj33JtoeC00jkbK0DKS';
 const String stripeSecretKey =

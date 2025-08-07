@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get_it/get_it.dart';
+import 'package:ecommerse_app/core/services/network_service.dart';
 import '../features/data/datasource/cart_remote_datasource.dart';
 import '../features/data/datasource/payment_datasource.dart';
 import '../features/data/datasource/product_remote_datasource.dart';
@@ -29,10 +30,13 @@ void setupLocator() {
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   sl.registerLazySingleton<Stripe>(() => Stripe.instance);
 
+  // Network Service
+  sl.registerLazySingleton<NetworkService>(() => NetworkService());
+
   // Data sources
-  sl.registerLazySingleton<ProductRemoteDataSource>(() => ProductRemoteDataSource());
-  sl.registerLazySingleton<CartRemoteDataSource>(() => CartRemoteDataSource());
-  sl.registerLazySingleton<StripePaymentDataSource>(() => StripePaymentDataSource());
+  sl.registerLazySingleton<ProductRemoteDataSource>(() => ProductRemoteDataSource(networkService: sl()));
+  sl.registerLazySingleton<CartRemoteDataSource>(() => CartRemoteDataSource(networkService: sl()));
+  sl.registerLazySingleton<StripePaymentDataSource>(() => StripePaymentDataSource(networkService: sl()));
 
   // Repositories
   sl.registerLazySingleton<ProductRepositoryImpl>(() => ProductRepositoryImpl(sl()));

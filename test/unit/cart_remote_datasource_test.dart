@@ -1,19 +1,26 @@
 import 'dart:convert';
+import 'package:ecommerse_app/core/services/network_service.dart';
+import 'package:ecommerse_app/di/injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ecommerse_app/features/data/datasource/cart_remote_datasource.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:ecommerse_app/features/data/models/cart_model.dart';
 import 'package:ecommerse_app/features/data/models/cart_product_model.dart';
-
+import 'product_remote_datasource_test.mocks.dart';
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
   group('CartRemoteDataSource', () {
     late CartRemoteDataSource dataSource;
-
+    late MockNetworkService mockNetworkService;
     setUp(() {
-      dataSource = CartRemoteDataSource();
+      mockNetworkService = MockNetworkService();
+      if (sl.isRegistered<NetworkService>()) {
+        sl.unregister<NetworkService>();
+      }
+      sl.registerLazySingleton<NetworkService>(() => mockNetworkService);
+      dataSource = CartRemoteDataSource(networkService: sl<NetworkService>());
     });
 
     test('returns CartModel when getCartById is successful', () async {

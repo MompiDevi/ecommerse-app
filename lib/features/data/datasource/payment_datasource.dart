@@ -1,32 +1,39 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:ecommerse_app/core/constants.dart';
+import 'package:ecommerse_app/core/api_endpoints.dart';
+import 'package:ecommerse_app/core/services/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:http/http.dart' as http;
 
 class StripePaymentDataSource {
+  final NetworkService networkService;
+  StripePaymentDataSource({required this.networkService});
 
   Future<Map<String, dynamic>?> createPaymentIntent({
     required double amount,
     required String currency,
   }) async {
-    final url = Uri.parse('https://api.stripe.com/v1/payment_intents');
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer $stripeSecretKey'
-      },
-      body: {
+    final response = await networkService.post(
+      ApiEndpoints.stripePaymentIntent,
+      data: {
         'amount': '${amount.toInt() * 100}',
         'currency': currency,
       },
+      options: Options(
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Bearer $stripeSecretKey',
+        },
+      ),
     );
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return response.data is Map<String, dynamic>
+          ? response.data
+          : jsonDecode(response.data) as Map<String, dynamic>;
     } else {
-      throw Exception('Failed to create PaymentIntent: ${response.body}');
+      throw Exception('Failed to create PaymentIntent: ${response.data}');
     }
   }
 

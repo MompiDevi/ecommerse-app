@@ -14,6 +14,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   setupLocator();
   Stripe.publishableKey = stripePublishableKey;
   sl<FirebaseApp>(); 
