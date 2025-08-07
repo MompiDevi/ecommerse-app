@@ -40,7 +40,16 @@
           "package_name": "com.example.ecommerse_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "470088447467-hpsgvngrbig1usjpelnpt01rufk2rjjq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecommerse_app",
+            "certificate_hash": "ec5d4da2475483347de4778e5d894e6bfb29eaad"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBtE5aMNmZWfdPLAK5FR7ZIETytnet9rJc"

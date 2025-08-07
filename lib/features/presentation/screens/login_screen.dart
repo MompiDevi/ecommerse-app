@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         idToken: googleAuth.idToken,
       );
       await _auth.signInWithCredential(credential);
-      // Navigate to home or show success
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
     } on FirebaseAuthException catch (e) {
       _showError(e.message);
     }
