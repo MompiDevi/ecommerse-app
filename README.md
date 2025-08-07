@@ -4,6 +4,26 @@ A modular, scalable, and production-ready e-commerce application built with Flut
 
 ---
 
+## 📸 Screenshots & Videos
+
+Add your screenshots and demo videos here:
+
+![Screen Shots]
+(assets/screenshots/screenshot1.png)
+(assets/screenshots/screenshot2.png)
+(assets/screenshots/screenshot3.png)
+(assets/screenshots/screenshot4.png)
+(assets/screenshots/screenshot5.png)
+(assets/screenshots/screenshot6.png)
+(assets/screenshots/screenshot7.png)
+(assets/screenshots/screenshot8.png)
+(assets/screenshots/screenshot9.png)
+(assets/screenshots/screenshot10.png)
+
+
+![Demo Video](assets/videos/app.mov)
+
+
 ## 🚀 Setup & Installation
 
 ### Prerequisites
@@ -52,7 +72,7 @@ flutter test
 - **lib/core/**: App-wide constants, theming, and utilities.
 - **lib/features/**: Feature-first modular structure (presentation, domain, data layers).
 - **lib/di/**: Dependency injection setup using `get_it`.
-- **test/**: Segregated into `unit/`, `widgets/`, and `integration/` for comprehensive coverage.
+- **test/**: Segregated into `unit/` and `widgets/` for comprehensive coverage.
 
 ### State Management
 - **BLoC (flutter_bloc)**: Predictable, testable, and scalable state management for all business logic.
@@ -72,8 +92,17 @@ flutter test
 ### Testing
 - **Unit Tests**: For BLoCs, usecases, and data sources.
 - **Widget Tests**: For all major UI components.
-- **Integration Tests**: For end-to-end user flows (checkout, etc.).
 - **Mocking**: All external dependencies (Firebase, Stripe, HTTP) are mocked in tests.
+
+---
+
+## 💡 Justification of Architecture & Technology Choices
+
+- **Feature-first structure**: Promotes modularity, scalability, and separation of concerns.
+- **BLoC pattern**: Ensures business logic is testable and UI-agnostic.
+- **Dependency Injection**: Makes all services and data sources easily swappable and mockable for testing.
+- **Centralized theming and strings**: Simplifies UI consistency and future localization.
+- **Comprehensive testing**: Ensures reliability and maintainability as the app grows.
 
 ---
 
@@ -86,7 +115,6 @@ flutter test
 
 ### 2. Stripe Not Working
 - Double-check your publishable key in `core/constants.dart`.
-- Ensure backend endpoints for payment intent are reachable.
 - For tests, mock the Stripe instance in DI.
 
 ### 3. Tests Hanging on Loading
