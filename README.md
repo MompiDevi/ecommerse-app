@@ -19,6 +19,8 @@ A modular, scalable, and production-ready e-commerce application built with Flut
   <img src="assets/screenshots/screenshot10.png" width="300"/>
 </p>
 
+https://github.com/user-attachments/assets/a86f4381-a85b-46c1-973b-05d2973e6800
+
 
 ## 🚀 Setup & Installation
 
