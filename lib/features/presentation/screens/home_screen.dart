@@ -1,3 +1,6 @@
+// Home screen displaying product list, navigation drawer, and cart icon.
+// Handles infinite scroll, product loading, and navigation to details and login.
+// Uses Bloc for state management and supports lazy loading of products.
 import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/presentation/screens/details_screen.dart';
@@ -27,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.addListener(_onScroll);
   }
 
+  // Handles infinite scroll to load more products when near the bottom
   void _onScroll() {
     if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200 && !_isLoadingMore) {
       final productBloc = context.read<ProductBloc>();
@@ -46,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Navigation drawer with logo and sign out
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -86,11 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
           CartIconCount(),
         ],
       ),
+      // Main body: product grid with Bloc state handling
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading) {
+            // Show loading spinner while products are loading
             return Center(child: CircularProgressIndicator());
           } else if (state is ProductLoaded) {
+            // Product grid with infinite scroll and animated cards
             return NotificationListener<ScrollNotification>(
               onNotification: (scrollNotification) {
                 if (scrollNotification is ScrollEndNotification) {
@@ -110,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: state.products.length + (state.hasMore ? 1 : 0),
                 itemBuilder: (context, index) {
                   if (index < state.products.length) {
+                    // Product card with animation for first 6 items
                     final card = ProductCard(
                       product: state.products[index],
                       onTap: () {
@@ -130,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       return card;
                     }
                   } else {
-                    // Show loading indicator at the end
+                    // Show loading indicator at the end for lazy loading
                     return Center(child: Padding(
                       padding: EdgeInsets.all(16),
                       child: CircularProgressIndicator(),
@@ -139,7 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
             ));
           } else if (state is ProductError) {
-            return Center(child: Text('Error: ${state.message}'));
+            // Show error message if product loading fails
+            return Center(child: Text('Error: {state.message}'));
           } else {
             return SizedBox.shrink();
           }

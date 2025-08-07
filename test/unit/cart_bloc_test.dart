@@ -9,41 +9,18 @@ import 'package:ecommerse_app/features/domain/usecase/update_cart.dart';
 import 'package:ecommerse_app/features/domain/entities/cart.dart';
 import 'package:ecommerse_app/features/domain/repositories/cart_repository.dart';
 import 'package:mockito/annotations.dart';
+import 'cart_bloc_test.mocks.dart';
 
-class MockGetCart extends Mock implements GetCart {}
-class MockRemoveCart extends Mock implements RemoveCart {}
-class MockUpdateCart extends Mock implements UpdateCart {}
+// Unit tests for CartBloc, verifying state transitions and event handling for cart operations.
+// Uses bloc_test and mocks to ensure business logic correctness in isolation.
+@GenerateMocks([GetCart, AddToCart, RemoveCart, UpdateCart])
 
-class MockAddToCart extends AddToCart {
-  MockAddToCart() : super(repository: _FakeCartRepository());
-  Future<void> Function({required Cart cart})? onCall;
-  @override
-  Future<void> call({required Cart cart}) async {
-    if (onCall != null) {
-      return onCall!(cart: cart);
-    }
-    return Future.value();
-  }
-}
-
-class _FakeCartRepository implements CartRepository {
-  @override
-  Future<void> addToCart(Cart model) async => Future.value();
-  @override
-  Future<Cart> getCartById(int id) async => throw UnimplementedError();
-  @override
-  Future<Cart> removeItemFromCart(int productId) async => throw UnimplementedError();
-  @override
-  Future<void> updateCartItemQuantity(int productId, int quantity) async => Future.value();
-}
-
-@GenerateNiceMocks([MockSpec<Cart>()])
 void main() {
-  late CartBloc bloc;
   late MockGetCart mockGetCart;
   late MockAddToCart mockAddToCart;
   late MockRemoveCart mockRemoveCart;
   late MockUpdateCart mockUpdateCart;
+  late CartBloc bloc;
 
   group('CartBloc', () {
     setUp(() {
@@ -92,7 +69,7 @@ void main() {
     blocTest<CartBloc, CartState>(
       'emits [CartLoading, CartLoaded] when AddToCartEvent is added and succeeds',
       build: () {
-        (bloc as dynamic).mockAddToCart.onCall = ({required cart}) async {};
+        when(mockAddToCart.call(cart: anyNamed('cart'))).thenAnswer((_) async => Future.value());
         when(mockGetCart.call(userId: 1)).thenAnswer((_) async => Cart(
               id: 1,
               userId: 1,
@@ -111,7 +88,7 @@ void main() {
     blocTest<CartBloc, CartState>(
       'emits [CartLoading, CartError] when AddToCartEvent throws',
       build: () {
-        (bloc as dynamic).mockAddToCart.onCall = ({required cart}) async { throw Exception('fail'); };
+        when(mockAddToCart.call(cart: anyNamed('cart'))).thenThrow(Exception('fail'));
         return bloc;
       },
       act: (bloc) => bloc.add(AddToCartEvent(cart: Cart(id: 1, userId: 1, date: DateTime(2025, 8, 6), products: []), userId: 1)),
@@ -148,3 +125,4 @@ void main() {
     );
   });
 }
+

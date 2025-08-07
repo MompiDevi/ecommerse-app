@@ -44,6 +44,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Product details header with back and cart navigation
               ProductDetailsHeader(
                 product: widget.product,
                 onBack: () => Navigator.pop(context),
@@ -52,6 +53,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   MaterialPageRoute(builder: (context) => CartScreen()),
                 ),
               ),
+              // Product details section for selecting options and adding to cart
               ProductDetailsBottom(
                 product: widget.product,
                 quantity: quantity,
@@ -125,3 +127,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 }
+
+// Product details screen showing product info, options, and related products.
+// Handles quantity, color, and size selection, and allows adding to cart.
+// Shows related products carousel and feedback on cart actions.

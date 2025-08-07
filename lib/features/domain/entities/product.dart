@@ -1,3 +1,5 @@
+// Domain entity representing a product, used in business logic and state management.
+// Immutable and equatable for robust comparison and state updates.
 import 'package:equatable/equatable.dart';
 class Product extends Equatable{
   final int id;

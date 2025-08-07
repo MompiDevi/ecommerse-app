@@ -1,3 +1,13 @@
+// Dependency injection setup for the app using GetIt.
+// Registers all core services, data sources, repositories, usecases, and BLoCs for modularity and testability.
+//
+// Firebase and Stripe DI
+// Network Service
+// Data sources
+// Repositories
+// Usecases
+// BLoCs (use factory for new instance per injection)
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -25,6 +35,9 @@ import '../features/presentation/blocs/product/product_bloc.dart';
 final sl = GetIt.instance;
 
 void setupLocator() {
+  // Register all core singletons and factories for the app.
+  // This enables easy swapping/mocking for tests and modular feature development.
+
   // Firebase and Stripe DI
   sl.registerLazySingleton<FirebaseApp>(() => Firebase.app());
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);

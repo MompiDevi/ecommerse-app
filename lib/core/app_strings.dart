@@ -1,3 +1,5 @@
+// Centralized app strings for UI text, supporting maintainability and localization.
+// Use these constants throughout the app to avoid hardcoding strings in widgets or logic.
 class AppStrings {
   static const String processingPayment = "Processing your payment...";
   static const String paymentSuccessful = "Payment Successful!";

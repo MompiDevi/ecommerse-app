@@ -9,7 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:ecommerse_app/di/injector.dart';
-// Import the generated file
+
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -17,7 +17,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   setupLocator();
   Stripe.publishableKey = stripePublishableKey;
-  sl<FirebaseApp>(); 
+  sl<FirebaseApp>();
   await sl<Stripe>().applySettings();
   runApp(const MainApp());
 }
@@ -27,6 +27,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // BLoCs are provided via DI for modularity and testability
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -42,7 +43,7 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system, // Uses system theme (light/dark)
+        themeMode: ThemeMode.system,
         home: const SplashScreen(),
       ),
     );

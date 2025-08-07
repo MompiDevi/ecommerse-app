@@ -1,3 +1,5 @@
+// Payment success/failure screen, shows payment result and navigation options.
+// Uses Bloc to display loading, success, or error states after payment attempt.
 import 'package:ecommerse_app/core/app_strings.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/features/presentation/widgets/app_button.dart';
@@ -18,6 +20,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
   @override
   void initState() {
     super.initState();
+    // Start payment process when screen is initialized
     BlocProvider.of<PaymentBloc>(context).add(StartPayment(widget.amount, widget.currency, widget.merchantDisplayName));
   }
   @override
@@ -31,6 +34,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
             child: BlocBuilder<PaymentBloc, PaymentState>(
               builder: (context, state) {
                 if (state is PaymentLoading) {
+                  // Show loading spinner and message while processing
                   return const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -43,6 +47,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     ],
                   );
                 } else if (state is PaymentSuccess) {
+                  // Show success icon, message, and back to home button
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -82,6 +87,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     ],
                   );
                 } else if (state is PaymentFailure) {
+                  // Show error icon, message, and try again button
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -1,8 +1,12 @@
+// Centralized app theme configuration for light and dark modes.
+// Defines color schemes, text styles, and component theming for consistent UI.
+// Update this file to change global app appearance.
 import 'package:flutter/material.dart';
 import 'package:ecommerse_app/core/theme/app_colors.dart';
 import 'package:ecommerse_app/core/theme/app_text_styles.dart';
 
 class AppTheme {
+  // Light theme configuration
   static ThemeData get lightTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
@@ -56,6 +60,7 @@ class AppTheme {
     );
   }
 
+  // Dark theme configuration
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
       colorScheme: ColorScheme.fromSeed(

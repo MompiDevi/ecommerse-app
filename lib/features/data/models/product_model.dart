@@ -1,4 +1,5 @@
-
+// Model for a product, mapping API data to the domain entity and vice versa.
+// Used for deserialization of product data from backend responses.
 
 import 'package:ecommerse_app/features/domain/entities/product.dart';
 
@@ -12,6 +13,7 @@ class ProductModel extends Product {
     required super.image,
   });
 
+  /// Constructs a model from a JSON map (API response).
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],

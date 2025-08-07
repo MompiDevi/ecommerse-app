@@ -11,6 +11,8 @@ import 'package:ecommerse_app/core/services/network_service.dart';
 import 'package:ecommerse_app/core/api_endpoints.dart';
 import 'product_remote_datasource_test.mocks.dart';
 
+/// Unit tests for ProductRemoteDataSource, verifying product fetching logic and error handling.
+/// Uses dependency injection and mocks for isolated, reliable tests.
 @GenerateMocks([NetworkService])
 void main() {
   group('ProductRemoteDataSource', () {

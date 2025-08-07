@@ -1,3 +1,7 @@
+// Domain entity representing a shopping cart, used throughout business logic.
+// Immutable and equatable for reliable state management and testing.
+// Contains a list of cart products and associated metadata.
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 

@@ -1,3 +1,5 @@
+// Abstract repository for cart operations, defining the contract for cart data access and mutation.
+// Decouples data sources from business logic and enables easy mocking for tests.
 import 'package:ecommerse_app/features/domain/entities/cart.dart';
 
 abstract class CartRepository{

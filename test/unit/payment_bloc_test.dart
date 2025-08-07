@@ -7,6 +7,9 @@ import 'package:ecommerse_app/features/domain/repositories/payment_repository.da
 import 'package:mockito/annotations.dart';
 import 'payment_bloc_test.mocks.dart';
 
+/// Unit tests for PaymentBloc, verifying state transitions and event handling for payment flows.
+/// Uses bloc_test and mocks to ensure business logic correctness in isolation.
+
 @GenerateMocks([ConfirmPayment])
 class FakePaymentRepository implements PaymentRepository {
   @override

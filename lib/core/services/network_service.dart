@@ -1,10 +1,15 @@
+// Provides a single entry point for all HTTP network requests in the app.
+// Abstracts Dio for easier testing and future replacement.
+
 import 'package:dio/dio.dart';
 
 class NetworkService {
   final Dio _dio;
 
+  /// Optionally inject a custom Dio instance (useful for testing or advanced config)
   NetworkService({Dio? dio}) : _dio = dio ?? Dio();
 
+  /// Generic GET request
   Future<Response<T>> get<T>(
     String url, {
     Map<String, dynamic>? queryParameters,
@@ -21,6 +26,7 @@ class NetworkService {
     );
   }
 
+  /// Generic POST request
   Future<Response<T>> post<T>(
     String url, {
     data,
@@ -41,6 +47,7 @@ class NetworkService {
     );
   }
 
+  /// Generic PUT request
   Future<Response<T>> put<T>(
     String url, {
     data,
@@ -61,6 +68,7 @@ class NetworkService {
     );
   }
 
+  /// Generic DELETE request
   Future<Response<T>> delete<T>(
     String url, {
     data,

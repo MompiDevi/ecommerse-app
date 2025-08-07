@@ -1,3 +1,5 @@
+// Test Stripe API keys for development and testing only.
+
 //Test Keys since backend is not available
 const String stripePublishableKey =
     'pk_test_51RszDEBwkGJVMopkQvOVNK147gAQePxFnnU86dedpS9ghseVA1a9GAEoU2fJiUq9XdLPKNYgdBOU02PEj33JtoeC00jkbK0DKS';

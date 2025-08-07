@@ -3,9 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:ecommerse_app/features/domain/entities/cart.dart' as _i2;
-import 'package:ecommerse_app/features/domain/entities/cart_product.dart'
-    as _i3;
+import 'dart:async' as _i5;
+
+import 'package:ecommerse_app/features/domain/entities/cart.dart' as _i3;
+import 'package:ecommerse_app/features/domain/repositories/cart_repository.dart'
+    as _i2;
+import 'package:ecommerse_app/features/domain/usecase/add_to_cart.dart' as _i6;
+import 'package:ecommerse_app/features/domain/usecase/get_cart.dart' as _i4;
+import 'package:ecommerse_app/features/domain/usecase/remove_cart.dart' as _i7;
+import 'package:ecommerse_app/features/domain/usecase/update_cart.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,8 +28,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeDateTime_0 extends _i1.SmartFake implements DateTime {
-  _FakeDateTime_0(
+class _FakeCartRepository_0 extends _i1.SmartFake
+    implements _i2.CartRepository {
+  _FakeCartRepository_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -32,7 +39,7 @@ class _FakeDateTime_0 extends _i1.SmartFake implements DateTime {
         );
 }
 
-class _FakeCart_1 extends _i1.SmartFake implements _i2.Cart {
+class _FakeCart_1 extends _i1.SmartFake implements _i3.Cart {
   _FakeCart_1(
     Object parent,
     Invocation parentInvocation,
@@ -42,87 +49,137 @@ class _FakeCart_1 extends _i1.SmartFake implements _i2.Cart {
         );
 }
 
-/// A class which mocks [Cart].
+/// A class which mocks [GetCart].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCart extends _i1.Mock implements _i2.Cart {
-  @override
-  int get userId => (super.noSuchMethod(
-        Invocation.getter(#userId),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
+class MockGetCart extends _i1.Mock implements _i4.GetCart {
+  MockGetCart() {
+    _i1.throwOnMissingStub(this);
+  }
 
   @override
-  DateTime get date => (super.noSuchMethod(
-        Invocation.getter(#date),
-        returnValue: _FakeDateTime_0(
+  _i2.CartRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeCartRepository_0(
           this,
-          Invocation.getter(#date),
+          Invocation.getter(#repository),
         ),
-        returnValueForMissingStub: _FakeDateTime_0(
+      ) as _i2.CartRepository);
+
+  @override
+  _i5.Future<_i3.Cart> call({required int? userId}) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#userId: userId},
+        ),
+        returnValue: _i5.Future<_i3.Cart>.value(_FakeCart_1(
           this,
-          Invocation.getter(#date),
+          Invocation.method(
+            #call,
+            [],
+            {#userId: userId},
+          ),
+        )),
+      ) as _i5.Future<_i3.Cart>);
+}
+
+/// A class which mocks [AddToCart].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAddToCart extends _i1.Mock implements _i6.AddToCart {
+  MockAddToCart() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.CartRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeCartRepository_0(
+          this,
+          Invocation.getter(#repository),
         ),
-      ) as DateTime);
+      ) as _i2.CartRepository);
 
   @override
-  List<_i3.CartProduct> get products => (super.noSuchMethod(
-        Invocation.getter(#products),
-        returnValue: <_i3.CartProduct>[],
-        returnValueForMissingStub: <_i3.CartProduct>[],
-      ) as List<_i3.CartProduct>);
+  _i5.Future<void> call({required _i3.Cart? cart}) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#cart: cart},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [RemoveCart].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoveCart extends _i1.Mock implements _i7.RemoveCart {
+  MockRemoveCart() {
+    _i1.throwOnMissingStub(this);
+  }
 
   @override
-  List<Object?> get props => (super.noSuchMethod(
-        Invocation.getter(#props),
-        returnValue: <Object?>[],
-        returnValueForMissingStub: <Object?>[],
-      ) as List<Object?>);
+  _i2.CartRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeCartRepository_0(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i2.CartRepository);
 
   @override
-  _i2.Cart copyWith({
-    int? id,
-    int? userId,
-    DateTime? date,
-    List<_i3.CartProduct>? products,
+  _i5.Future<_i3.Cart> call({required int? productId}) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#productId: productId},
+        ),
+        returnValue: _i5.Future<_i3.Cart>.value(_FakeCart_1(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {#productId: productId},
+          ),
+        )),
+      ) as _i5.Future<_i3.Cart>);
+}
+
+/// A class which mocks [UpdateCart].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUpdateCart extends _i1.Mock implements _i8.UpdateCart {
+  MockUpdateCart() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.CartRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeCartRepository_0(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i2.CartRepository);
+
+  @override
+  _i5.Future<void> call({
+    required int? productId,
+    required int? quantity,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #copyWith,
+          #call,
           [],
           {
-            #id: id,
-            #userId: userId,
-            #date: date,
-            #products: products,
+            #productId: productId,
+            #quantity: quantity,
           },
         ),
-        returnValue: _FakeCart_1(
-          this,
-          Invocation.method(
-            #copyWith,
-            [],
-            {
-              #id: id,
-              #userId: userId,
-              #date: date,
-              #products: products,
-            },
-          ),
-        ),
-        returnValueForMissingStub: _FakeCart_1(
-          this,
-          Invocation.method(
-            #copyWith,
-            [],
-            {
-              #id: id,
-              #userId: userId,
-              #date: date,
-              #products: products,
-            },
-          ),
-        ),
-      ) as _i2.Cart);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

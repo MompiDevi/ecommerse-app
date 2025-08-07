@@ -9,6 +9,10 @@ import 'package:ecommerse_app/features/presentation/widgets/cart_summary_section
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Cart screen displaying cart items, summary, and checkout button.
+// Uses Bloc to manage cart and product state, and calculates totals.
+// Handles navigation to payment and error/loading states.
+
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

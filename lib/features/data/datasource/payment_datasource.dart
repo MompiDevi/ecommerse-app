@@ -1,3 +1,5 @@
+// Data source for Stripe payment operations, abstracting all network and SDK logic for payment flows.
+// Relies on NetworkService for backend calls and FlutterStripe for client-side payment sheet.
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:ecommerse_app/core/constants.dart';
@@ -7,10 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
+/// Handles all remote payment operations using Stripe.
+/// Decouples payment logic from UI and business logic, enabling testability and modularity.
 class StripePaymentDataSource {
   final NetworkService networkService;
   StripePaymentDataSource({required this.networkService});
 
+  /// Creates a Stripe PaymentIntent via backend API.
+  /// Returns the PaymentIntent data or throws on failure.
   Future<Map<String, dynamic>?> createPaymentIntent({
     required double amount,
     required String currency,
@@ -37,6 +43,8 @@ class StripePaymentDataSource {
     }
   }
 
+  /// Orchestrates the full payment flow: creates intent, initializes, and presents payment sheet.
+  /// Throws if any step fails, returns payment result string on success.
   Future<String> confirmPayment({
     required double amount,
     required String currency,

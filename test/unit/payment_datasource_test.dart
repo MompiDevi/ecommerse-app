@@ -8,6 +8,10 @@ import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:ecommerse_app/features/data/datasource/payment_datasource.dart';
 import 'product_remote_datasource_test.mocks.dart';
+
+/// Unit tests for [StripePaymentDataSource], verifying payment intent creation and error handling.
+/// Uses dependency injection and mocks for isolated, reliable tests.
+
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {

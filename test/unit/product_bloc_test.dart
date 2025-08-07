@@ -8,6 +8,9 @@ import 'package:ecommerse_app/features/domain/repositories/product_repository.da
 import 'package:mockito/annotations.dart';
 import 'product_bloc_test.mocks.dart';
 
+/// Unit tests for ProductBloc, verifying state transitions and event handling.
+/// Uses bloc_test and mocks to ensure business logic correctness in isolation.
+
 @GenerateMocks([GetAllProducts])
 void main() {
   test('initial state is ProductInitial', () {

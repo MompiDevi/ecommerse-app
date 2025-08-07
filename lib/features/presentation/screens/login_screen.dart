@@ -1,3 +1,6 @@
+// Login screen for email/password and Google authentication.
+// Handles user input, validation, and navigation to home on success.
+// Provides error feedback and links to sign up and password reset.
 import 'package:ecommerse_app/features/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _loading = false;
 
+  // Handles email/password sign-in
   Future<void> _signInWithEmail() async {
     setState(() => _loading = true);
     try {
@@ -32,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _loading = false);
   }
 
+  // Handles Google sign-in
   Future<void> _signInWithGoogle() async {
     setState(() => _loading = true);
     try {
@@ -54,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _loading = false);
   }
 
+  // Shows error message in a SnackBar
   void _showError(String? message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message ?? 'An error occurred')),
@@ -71,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Welcome text
                 const Text(
                   AppStrings.welcomeBack,
                   style: TextStyle(
@@ -80,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
+                // Login to account subtitle
                 const Text(
                   AppStrings.loginToAccount,
                   style: TextStyle(
@@ -88,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
+                // Login form card
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.card,
@@ -104,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                     child: Column(
                       children: [
+                        // Email input
                         TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
@@ -115,6 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
+                        // Password input
                         TextField(
                           controller: _passwordController,
                           obscureText: true,
@@ -127,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
+                        // Forgot password link
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
@@ -143,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 24),
+                        // Login button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -169,6 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16),
                         const Divider(),
                         const SizedBox(height: 16),
+                        // Google sign-in button
                        OutlinedButton(
                           onPressed: _signInWithGoogle,
                           style: OutlinedButton.styleFrom(
@@ -189,6 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
+                        // Sign up link
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

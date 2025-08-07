@@ -1,3 +1,5 @@
+// Model for a shopping cart, handling serialization and mapping to/from domain entities.
+// Used to transfer cart data between API and domain layers.
 import 'dart:convert';
 
 import 'package:ecommerse_app/features/data/models/cart_product_model.dart';
@@ -11,6 +13,7 @@ class CartModel extends Cart{
     required List<CartProductModel> products,
   }) : super(id: id, userId: userId, date: date, products: products);
 
+  /// Converts the cart model to a map for serialization or network transfer.
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
@@ -19,6 +22,7 @@ class CartModel extends Cart{
       'products': products.map((x) => x).toList(),
     };
   }
+  /// Creates a model from a domain entity for persistence or network transfer.
   factory CartModel.fromEntity(Cart cart) {
     return CartModel(
       date: cart.date,
@@ -27,6 +31,7 @@ class CartModel extends Cart{
       id: cart.id
     );
   }
+  /// Constructs a model from a map (e.g., API response).
   factory CartModel.fromMap(Map<String, dynamic> map) {
     return CartModel(
       id: map['id'] as int,
