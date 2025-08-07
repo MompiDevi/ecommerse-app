@@ -8,17 +8,16 @@ A modular, scalable, and production-ready e-commerce application built with Flut
 
 Add your screenshots and demo videos here:
 
-![Screen Shots]
-(assets/screenshots/screenshot1.png)
-(assets/screenshots/screenshot2.png)
-(assets/screenshots/screenshot3.png)
-(assets/screenshots/screenshot4.png)
-(assets/screenshots/screenshot5.png)
-(assets/screenshots/screenshot6.png)
-(assets/screenshots/screenshot7.png)
-(assets/screenshots/screenshot8.png)
-(assets/screenshots/screenshot9.png)
-(assets/screenshots/screenshot10.png)
+![Home Screen](assets/screenshots/screenshot1.png)
+![Cart Screen](assets/screenshots/screenshot2.png)
+![Details Screen](assets/screenshots/screenshot3.png)
+![Related Products Screen](assets/screenshots/screenshot4.png)
+![Payment Popup](assets/screenshots/screenshot5.png)
+![Payment Loading Popup](assets/screenshots/screenshot6.png)
+![Payment Success Popup](assets/screenshots/screenshot7.png)
+![Payment Success Screen ](assets/screenshots/screenshot8.png)
+![Menu Screen](assets/screenshots/screenshot9.png)
+![Login Screen](assets/screenshots/screenshot10.png)
 
 
 ![Demo Video](assets/videos/app.mov)
