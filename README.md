@@ -20,9 +20,6 @@ A modular, scalable, and production-ready e-commerce application built with Flut
 </p>
 
 
-![Demo Video](assets/videos/app.mov)
-
-
 ## 🚀 Setup & Installation
 
 ### Prerequisites
