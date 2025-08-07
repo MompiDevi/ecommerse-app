@@ -4,20 +4,20 @@ A modular, scalable, and production-ready e-commerce application built with Flut
 
 ---
 
-## 📸 Screenshots & Videos
+## 📸 Screenshots
 
-Add your screenshots and demo videos here:
-
-![Home Screen](assets/screenshots/screenshot1.png)
-![Cart Screen](assets/screenshots/screenshot2.png)
-![Details Screen](assets/screenshots/screenshot3.png)
-![Related Products Screen](assets/screenshots/screenshot4.png)
-![Payment Popup](assets/screenshots/screenshot5.png)
-![Payment Loading Popup](assets/screenshots/screenshot6.png)
-![Payment Success Popup](assets/screenshots/screenshot7.png)
-![Payment Success Screen ](assets/screenshots/screenshot8.png)
-![Menu Screen](assets/screenshots/screenshot9.png)
-![Login Screen](assets/screenshots/screenshot10.png)
+<p align="center">
+  <img src="assets/screenshots/screenshot1.png" width="300"/>
+  <img src="assets/screenshots/screenshot2.png" width="300"/>
+  <img src="assets/screenshots/screenshot3.png" width="300"/>
+  <img src="assets/screenshots/screenshot4.png" width="300"/>
+  <img src="assets/screenshots/screenshot5.png" width="300"/>
+  <img src="assets/screenshots/screenshot6.png" width="300"/>
+  <img src="assets/screenshots/screenshot7.png" width="300"/>
+  <img src="assets/screenshots/screenshot8.png" width="300"/>
+  <img src="assets/screenshots/screenshot9.png" width="300"/>
+  <img src="assets/screenshots/screenshot10.png" width="300"/>
+</p>
 
 
 ![Demo Video](assets/videos/app.mov)
